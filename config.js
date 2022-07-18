@@ -4,12 +4,7 @@ const _config = {
     port: 3000,
     debugMode: false,
 
-    sql: {
-        host: "localhost",
-        user: "root",
-        password: "",
-        database: "database"
-    },
+
 
     discord: {
         oauthId: "YOUR_OAUTH_CLIENT_ID",
