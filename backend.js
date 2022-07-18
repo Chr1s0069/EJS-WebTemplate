@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const session  = require('express-session');
 const express = require("express");
 
-async function init(app, con) {
+async function init(app) {
     if (Number(process.version.slice(1).split(".")[0] < 16)) throw new Error(`Node.js v16 or higher is required, Discord.JS relies on this version, please update @ https://nodejs.org`);
     var multerStorage = multer.memoryStorage()
     app.use(multer({ storage: multerStorage }).any());
@@ -22,15 +22,7 @@ async function init(app, con) {
     app.use('/assets', express.static(__dirname + 'public/assets'))
     app.set('views', './views');
     app.set('view engine', 'ejs');
-    sqlLoop(con);
 };
-
-async function sqlLoop(con) {
-    if(con == 0) return;
-    await con.ping();
-    setTimeout(() => sqlLoop(con), 60000 * 30);
-};
-
 async function checkAuth(req, res, next) {
     if(req.isAuthenticated()){
         next();
