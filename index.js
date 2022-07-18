@@ -4,14 +4,11 @@ const express = require("express");
 const app = express();
 const chalk = require('chalk');
 
-// MySQL Setup
-const mysql = require('mysql');
-config.sql.charset = "utf8mb4";
-let con = mysql.createConnection(config.sql); // set = 0 to disable
+
 
 // Backend Initialization
 const backend = require('./backend.js');
-backend.init(app, con);
+backend.init(app);
 
 // Discord Login Passport
 const passport = require('passport');
